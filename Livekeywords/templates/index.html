@@ -1,0 +1,88 @@
+{% load static %} 
+<html lang="en">
+<head>  
+  
+<link rel="stylesheet" href="{% static 'css/extracss.css' %}">
+<link rel="stylesheet" href="{% static 'css/icons.css' %}">
+<link rel="stylesheet" href="{% static 'css/css.css' %}">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{{title}}</title>
+</head>
+<body onload="fire()" class="grey lighten-4">
+ 
+  <nav class="navbar-fixed">
+    <div class="nav-wrapper green accent-4  navbar-fixed">
+      <a href="{% url 'keyword_fetcher'  %}" class="brand-logo"><i style="font-size: 50px;margin-left: 10px;" class="left material-icons">trending_up</i>Livekeywords</a>
+      <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+      <ul class="right hide-on-med-and-down">
+        <li><a href="{% url 'keyword_fetcher'  %}">Livekeywords</a></li> 
+        <li><a href="{% url 'youtube_video_tags'  %}">Youtube Video Tags</a></li> 
+      </ul>
+    </div>
+  </nav> 
+  <ul class="sidenav" id="mobile-demo">
+    <li><a href="{% url 'keyword_fetcher'  %}">Livekeywords</a></li> >
+    <li><a href="{% url 'youtube_video_tags'  %}">Youtube Video Tags</a></li> >
+  </ul>
+         
+
+
+
+
+
+
+ 
+  
+{% block 'block' %}
+
+{% endblock %}
+
+
+{% if messages %}
+{% for msg in messages %}
+    <p style="display: none;" id="msg">{{msg}}</p>
+{% endfor %}
+{% endif %}
+
+<script src="{% static 'js/js.js' %}"></script>  
+<script> 
+function fire(){
+
+  var msg = document.getElementById("msg")
+  var message = '<span>  <i style="font-weight: bold;text-shadow: 0px 1px, 1px 0px, 1px 1px" class="material-icons left">check</i>  '+msg.innerHTML+'</span>';
+  M.toast({html: message,classes:'green rounded w3-display-topright	',displayLength:3000})
+}
+
+document.addEventListener('DOMContentLoaded', function() {
+  var elems = document.querySelectorAll('.sidenav');
+  var instances = M.Sidenav.init(elems, {'Sidenav':true});
+});
+document.addEventListener('DOMContentLoaded', function() {
+    var elems = document.querySelectorAll('.dropdown-trigger');
+    var instances = M.Dropdown.init(elems, {'Dropdown':true,'closeOnClick':false});
+})
+document.addEventListener('DOMContentLoaded', function() {
+    var elems = document.querySelectorAll('.dropdown-trigger2');
+    var instances = M.Dropdown.init(elems, {'Dropdown':true,'closeOnClick':true});
+})
+
+document.addEventListener('DOMContentLoaded', function() {
+    var elems = document.querySelectorAll('.fixed-action-btn');
+    var instances = M.FloatingActionButton.init(elems, {'FloatingActionButton':true});
+  });
+
+
+  document.addEventListener('DOMContentLoaded', function() {
+    var elems = document.querySelectorAll('.modal');
+    var instances = M.Modal.init(elems, {'Modal':true});
+  });
+
+  document.addEventListener('DOMContentLoaded', function() {
+    var elems = document.querySelectorAll('select');
+    var instances = M.FormSelect.init(elems, {'FormSelect':true});
+  });
+</script>
+
+</body>
+</html>

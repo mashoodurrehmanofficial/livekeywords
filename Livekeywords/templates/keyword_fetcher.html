@@ -1,0 +1,248 @@
+{% extends 'index.html' %}
+{% block 'block' %}
+
+ 
+
+
+
+<br>
+
+{% include 'partials/searchbar.html' %}
+
+<div class="card" style="margin-left: 3%;margin-right: 3%;">
+  <div style="padding: 10px;">
+
+{% if total_results %}
+<div class="row" >
+
+<p class="col l2 s1 m1  right green-text"><b>Total Results: {{total_results}}</b></p>
+  
+ 
+  <a  class='dropdown-trigger2  col l2 m2 s4' href='#' data-target='dropdown2'><b><i style="font-size: 30px;" class="material-icons green-text">menu</i></b></a>
+  <!-- Dropdown Structure -->
+  <ul id='dropdown2' class='dropdown-content '>
+    {% if all_data %}<li ><a id="all_data" class="grey-text text-darken-3" name="copiers"><span style="margin-left: 2px;margin-right: 4px"><i class="material-icons green-text text-darken-1">done_all</i> Copy All </a></li><li class="divider" tabindex="-1"></li>{% endif %}
+    {% if google_data %}    <li ><a  id="google_data"  class="grey-text text-darken-3" name="copiers"><span style="margin-left: 2px;margin-right: 4px">{% include 'svg/google.html' %}</span> Copy  Keywords</a></li><li class="divider" tabindex="-1"></li>{% endif %}
+    {% if youtube_data %}    <li ><a   id="youtube_data" class="grey-text text-darken-3" name="copiers"><span style="margin-left: 2px;margin-right: 4px">{% include 'svg/youtube.html' %}</span> Copy  Keywords</a></li><li class="divider" tabindex="-1"></li>{% endif %}
+    {% if bing_data %}<li ><a  id="bing_data" class="grey-text text-darken-3" name="copiers"><span style="margin-left: 2px;margin-right: 4px">{% include 'svg/bing.html' %}</span> Copy  Keywords</a></li><li class="divider" tabindex="-1"></li>{% endif %}
+    {% if yahoo_data %}<li ><a  id="yahoo_data" class="grey-text text-darken-3" name="copiers"><span style="margin-left: 2px;margin-right: 4px">{% include 'svg/yahoo.html' %}</span> Copy  Keywords</a></li><li class="divider" tabindex="-1"></li>{% endif %}
+    {% if wikipedia_data %}<li ><a  id="wikipedia_data" class="grey-text text-darken-3" name="copiers"><span style="margin-left: 2px;margin-right: 4px">{% include 'svg/wikipedia.html' %}</span> Copy  Keywords</a></li><li class="divider" tabindex="-1"></li>{% endif %}
+    
+    
+  </ul>
+</div>
+
+
+{% endif %}
+ 
+
+<table class="">
+  <thead>
+    <tr>
+        <th>Keyword</th>
+        <th>Ranking Status</th>
+        <th>Ranking </th>
+        <th>Add to my List</th>
+        <th>Source</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for keyword in google_data %}
+    <tr>
+      <td name="google_keyword">{{keyword}}</td>
+      <td>Live <i class="material-icons green-text" style="font-size: 10px;">lens</i></td>
+      <td>100%</td>
+      <td  name="sender" id="{{keyword}}"><i style="margin-left:30px;cursor:pointer;" class="material-icons green-text accent-5">near_me</i></td>
+      <td>{% include 'svg/google.html' %}</td>
+    </tr> 
+    {% endfor %}
+
+    {% for keyword in youtube_data %}
+    <tr>
+      <td name="youtube_keyword">{{keyword}}</td>
+      <td>Live <i class="material-icons green-text" style="font-size: 10px;">lens</i></td>
+      <td>100%</td>
+      <td  name="sender" id="{{keyword}}"><i style="margin-left:30px;cursor:pointer;" class="material-icons green-text accent-5">near_me</i></td>
+      <td>{% include 'svg/youtube.html' %}</td>
+    </tr> 
+    {% endfor %}
+
+    {% for keyword in bing_data %}
+    <tr>
+      <td name="bing_keyword">{{keyword}}</td>
+      <td>Live <i class="material-icons green-text" style="font-size: 10px;">lens</i></td>
+      <td>100%</td>
+      <td  name="sender" id="{{keyword}}"><i style="margin-left:30px;cursor:pointer;" class="material-icons green-text accent-5">near_me</i></td>
+      <td>{% include 'svg/bing.html' %}</td>
+    </tr> 
+    {% endfor %}
+
+    {% for keyword in yahoo_data %}
+    <tr>
+      <td name="yahoo_keyword">{{keyword}}</td>
+      <td>Live <i class="material-icons green-text" style="font-size: 10px;">lens</i></td>
+      <td>100%</td>
+      <td  name="sender" id="{{keyword}}"><i style="margin-left:30px;cursor:pointer;" class="material-icons green-text accent-5">near_me</i></td>
+      <td>{% include 'svg/yahoo.html' %}</td>
+    </tr> 
+    {% endfor %}
+    
+
+    {% for keyword in wikipedia_data %}
+    <tr>
+      <td name="wikipedia_keyword">{{keyword}}</td>
+      <td>Live <i class="material-icons green-text" style="font-size: 10px;">lens</i></td>
+      <td>100%</td>
+      <td  name="sender" id="{{keyword}}"><i style="margin-left:30px;cursor:pointer;" class="material-icons green-text accent-5">near_me</i></td>
+      <!-- <td>{% include 'svg/wikipedia.html' %}</td>   -->
+      <td><img src="https://upload.wikimedia.org/wikipedia/commons/6/61/Wikipedia-logo-transparent.png" width="25px" height="25px" alt=""></td>  
+    </tr> 
+    {% endfor %}
+    
+
+    {% for keyword in all_data %}
+    <tr>
+      <td style="display: none;" name="all_keyword">{{keyword}}</td>
+    </tr> 
+    {% endfor %}
+    
+  </tbody>
+</table> 
+<input style="height:0.1px;width: 0.1px;"   id="inpstorage"> 
+</div></div> 
+
+
+
+
+
+
+<div class="fixed-action-btn" onclick="chipgenerator()">
+  <a class="btn-floating btn-large red waves-effect waves-light green accent-4 modal-trigger" href="#modal1">
+    <i class="large material-icons">beenhere</i>
+  </a>
+</div>
+<!-- Modal Structure -->
+<div id="modal1" class="modal">
+  <div class="modal-content">
+    <h3 class="center-align">My keywords</h3>
+    <div class="row">
+      <div class="col l1 m1 s3 right" style="cursor: pointer;" onclick="copy()"><i class="material-icons ">content_copy</i></div>
+      <i onclick="delete_all()" class="col l2 m2 s3 material-icons right red-text">delete_sweep</i>
+    </div>
+    
+    <div id="chips"></div>
+    
+  </div>
+  <div class="modal-footer">
+
+    <a class="modal-close waves-effect waves-green btn-flat">Close</a>
+  </div>
+</div>
+
+
+<p style="display: none;" id="storage"></p>
+<input style="height: 1px;width: 1px;" id="keywords">
+
+<script>
+  function copy() {
+  var copyText = document.getElementById("inpstorage");
+  copyText.select(); 
+  document.execCommand("copy");
+  if(copyText.value != ''){
+    M.toast({html: '<span>  Keywords copied </span>', classes: 'rounded green accent-4 ',displayLength:2000});
+  }
+}
+var all_keywords = document.getElementsByName('all_keyword')
+var google_keyword = document.getElementsByName('google_keyword')
+var youtube_keyword = document.getElementsByName('youtube_keyword')
+var bing_keyword = document.getElementsByName('bing_keyword')
+var yahoo_keyword = document.getElementsByName('yahoo_keyword')
+var wikipedia_keyword = document.getElementsByName('wikipedia_keyword')
+var keyword = [all_keywords,google_keyword,youtube_keyword,bing_keyword,yahoo_keyword,wikipedia_keyword]
+var copier = document.getElementsByName('copiers')
+var key_storage = document.getElementById('keywords')
+var rough = []
+for(x=0;x<copier.length;x++){
+  specific_copier(x,keyword[x])
+}
+function specific_copier(x,target){
+  
+    copier[x].addEventListener('click', function(){
+    key_storage.value = ''
+    for(y=0;y<target.length;y++){
+      key_storage.value += target[y].innerHTML+','
+  } 
+    var copyText = key_storage
+    copyText.select(); 
+    document.execCommand("copy"); 
+    M.toast({html: `<span >   Keywords copied   </span>`, classes: 'rounded green accent-4 ',displayLength:2000});
+ 
+  }) 
+}
+
+
+
+
+var sender = document.getElementsByName('sender')
+var storage = document.getElementById('storage')
+var inpstorage = document.getElementById('inpstorage')
+var chips = document.getElementById('chips')
+var selected_data = []
+function delete_all(){
+  document.getElementById('storage').innerHTML=''
+  chips.innerHTML = ''
+  selected_data = []
+  for(x=0;x<sender.length;x++){
+    sender[x].childNodes[0].textContent = 'near_me' 
+  }
+}
+for(x=0;x<sender.length;x++){
+  sender[x].addEventListener('click', function(){
+    if(this.childNodes[0].textContent == 'near_me'){
+      selected_data.push(this.id)
+      this.childNodes[0].textContent = 'done_all'
+      storage.innerHTML = selected_data 
+      inpstorage.value = selected_data 
+      if(selected_data.length <=0){
+      document.getElementById('delete_all').style.display = 'none'
+    }else{
+      document.getElementById('delete_all').style.display = 'block'
+    }
+    }else if(this.childNodes[0].textContent == 'done_all'){
+      x = selected_data.filter(value=>{return value==this.id})
+      y = selected_data.findIndex(value=>{return value==x})
+      selected_data.splice(y,1)
+      this.childNodes[0].textContent = 'near_me'
+      storage.innerHTML = selected_data 
+      inpstorage.value = selected_data 
+      for(x=0;x<selected_data.length;x++){
+        chips.innerHTML = chips.innerHTML.replace('kss','')
+      }
+      if(selected_data.length <=0){
+        document.getElementById('delete_all').style.display = 'none'
+      }else{
+        document.getElementById('delete_all').style.display = 'block'
+  }
+    }
+  })
+}
+if(selected_data.length <=0){
+  document.getElementById('delete_all').style.display = 'none'
+}else{
+  document.getElementById('delete_all').style.display = 'block'
+}
+function chipgenerator(){
+  chips.innerHTML = ''
+  for(x=0;x<selected_data.length;x++){
+    chips.innerHTML += `<div class="chip green accent-4  grey-text text-lighten-4 "> ${selected_data[x]} </div>`
+  }   
+}
+
+
+
+
+
+
+</script>
+
+{% endblock %}

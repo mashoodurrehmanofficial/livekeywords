@@ -1,0 +1,73 @@
+{% extends 'index.html' %}
+{% block 'block' %}
+
+<div class="card" style="margin-left: 3%;margin-right: 3%;">
+  <div style="padding: 10px;">
+    <form action="" method="post">{% csrf_token %}
+      <div class="row">
+        <div class="input-field col s9 m9 l10">
+          <input name="link" id="link" type="url" value="{{link}}" class="validate" required>
+          <label for="link">Insert video link</label>
+        </div>
+        <input style="margin-top: 23px;" type="submit" value="Search" class="btn green accent-4 col s3 m3 l2">
+      </div>
+    </form>
+  </div>
+</div>
+       
+
+{% if keywords %}
+<div class="" style="margin-left: 3%;margin-right: 3%; padding: 10px;">
+  <ul class="collection">
+    <li class="collection-item avatar">
+      <img width="30px" height="30px" src="{{thumbnail}}" alt="" class="circle">
+      <span class="title" ><p style="font-size: 120%;">{{title}}</p></span>
+      <div style="margin-top: 15px;"><i class="material-icons blue-text left">remove_red_eye</i> <p>{{views}}</p></div>
+  
+      
+    </li>
+  
+    
+  </ul>
+  </div>
+  
+  <div class="card" style="margin-left: 3%;margin-right: 3%; padding: 10px;">
+    <i onclick="copy()" style="cursor: pointer;" class="material-icons right">content_copy</i> <br><br>
+    <div>
+      {% for keyword in keywords %} 
+      {% if keyword != '' %}
+      <div class="chip card">
+        <span name="video_tags">{{keyword}}</span>
+        <i class="close material-icons">close</i>
+      </div>
+      {% endif %}
+  {% endfor %}
+    </div>
+  </div>
+  
+  <h3>{{message}}</h3>
+  
+  <input style="height: 0.1px;width: 0.1px;" type="text" name="video_tag_storage" id="video_tag_storage">
+  
+{% endif %}
+
+
+<script>
+var video_tags = document.getElementsByName('video_tags')
+var video_tag_storage = document.getElementById('video_tag_storage')
+
+function copy() {
+  video_tag_storage.value = ''
+  for(x=0;x<video_tags.length;x++){
+    video_tag_storage.value += video_tags[x].innerHTML+','
+  } 
+  video_tag_storage.select(); 
+  document.execCommand("copy");
+  if(video_tag_storage.value != ''){
+    M.toast({html: '<span>  Keywords copied </span>', classes: 'rounded green accent-4 ',displayLength:2000});
+}
+}
+</script>
+
+
+{% endblock %}

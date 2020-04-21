@@ -1,0 +1,64 @@
+<table class="responsive-table">
+  <thead>
+    <tr>
+        <th>Keyword</th>
+        <th>Ranking Status</th>
+        <th>Ranking </th>
+        <th>Add to my List</th>
+        <th>Source</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for keyword in google_data %}
+    <tr>
+      <td>{{keyword}}</td>
+      <td>Live <i class="material-icons green-text" style="font-size: 10px;">lens</i></td>
+      <td>100%</td>
+      <td  name="sender" id="{{keyword}}"><i style="margin-left:30px;cursor:pointer;" class="material-icons green-text accent-5">near_me</i></td>
+      <td>{% include 'svg/google.html' %}</td>
+    </tr> 
+    {% endfor %}
+
+    {% for keyword in youtube_data %}
+    <tr>
+      <td>{{keyword}}</td>
+      <td>Live <i class="material-icons green-text" style="font-size: 10px;">lens</i></td>
+      <td>100%</td>
+      <td  name="sender" id="{{keyword}}"><i style="margin-left:30px;cursor:pointer;" class="material-icons green-text accent-5">near_me</i></td>
+      <td>{% include 'svg/youtube.html' %}</td>
+    </tr> 
+    {% endfor %}
+
+    {% for keyword in bing_data %}
+    <tr>
+      <td>{{keyword}}</td>
+      <td>Live <i class="material-icons green-text" style="font-size: 10px;">lens</i></td>
+      <td>100%</td>
+      <td name="sender" value="{{keyword}}"><i style="margin-left:30px;cursor:pointer;" class="material-icons green-text accent-5">near_me</i></td>
+      <td>{% include 'svg/bing.html' %}</td>
+    </tr> 
+    {% endfor %}
+
+    {% for keyword in yahoo_data %}
+    <tr>
+      <td>{{keyword}}</td>
+      <td>Live <i class="material-icons green-text" style="font-size: 10px;">lens</i></td>
+      <td>100%</td>
+      <td name="sender" value="{{keyword}}"><i style="margin-left:30px;cursor:pointer;" class="material-icons green-text accent-5">near_me</i></td>
+      <td>{% include 'svg/yahoo.html' %}</td>
+    </tr> 
+    {% endfor %}
+    
+
+    {% for keyword in wikipedia_data %}
+    <tr>
+      <td>{{keyword}}</td>
+      <td>Live <i class="material-icons green-text" style="font-size: 10px;">lens</i></td>
+      <td>100%</td>
+      <td name="sender" value="{{keyword}}"><i style="margin-left:30px;cursor:pointer;" class="material-icons green-text accent-5">near_me</i></td>
+      <td>{% include 'svg/wikipedia.html' %}</td>  
+    </tr> 
+    {% endfor %}
+    
+  </tbody>
+</table> 
