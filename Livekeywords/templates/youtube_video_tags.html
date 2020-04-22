@@ -45,8 +45,9 @@
     </div>
   </div>
   
-  <h3>{{message}}</h3>
-  
+ {% if message %}
+       <h3>{{message}}</h3>
+  {& endif &}
   <input style="height: 0.1px;width: 0.1px;" type="text" name="video_tag_storage" id="video_tag_storage">
   
 {% endif %}
