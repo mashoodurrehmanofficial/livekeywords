@@ -108,6 +108,7 @@
     
   </tbody>
 </table> 
+<input style="height:0.1px;width: 0.1px;"  type="text" name="" id="specific_copier">
 <input style="height:0.1px;width: 0.1px;"   id="inpstorage"> 
 </div></div> 
 
@@ -152,33 +153,41 @@
     M.toast({html: '<span>  Keywords copied </span>', classes: 'rounded green accent-4 ',displayLength:2000});
   }
 }
-var all_keywords = document.getElementsByName('all_keyword')
-var google_keyword = document.getElementsByName('google_keyword')
-var youtube_keyword = document.getElementsByName('youtube_keyword')
-var bing_keyword = document.getElementsByName('bing_keyword')
-var yahoo_keyword = document.getElementsByName('yahoo_keyword')
-var wikipedia_keyword = document.getElementsByName('wikipedia_keyword')
-var keyword = [all_keywords,google_keyword,youtube_keyword,bing_keyword,yahoo_keyword,wikipedia_keyword]
+
 var copier = document.getElementsByName('copiers')
 var key_storage = document.getElementById('keywords')
+var specific_copier = document.getElementById('specific_copier')
 var rough = []
 for(x=0;x<copier.length;x++){
-  specific_copier(x,keyword[x])
-}
-function specific_copier(x,target){
-  
-    copier[x].addEventListener('click', function(){
-    key_storage.value = ''
-    for(y=0;y<target.length;y++){
-      key_storage.value += target[y].innerHTML+','
-  } 
-    var copyText = key_storage
-    copyText.select(); 
+  copier[x].addEventListener('click', function(){
+    var keyword = document.getElementsByName(this.id.split('_')[0]+'_keyword')
+    specific_copier.value = ''
+    for(y=0;y<keyword.length;y++){
+      var unique_keyword = keyword[y].innerHTML
+      specific_copier.value += keyword[y].innerHTML+','
+    }
+    
+    specific_copier.select(); 
     document.execCommand("copy"); 
-    M.toast({html: `<span >   Keywords copied   </span>`, classes: 'rounded green accent-4 ',displayLength:2000});
- 
-  }) 
+    M.toast({html: `<span >   Keywords copied   </span>`, classes: 'rounded green accent-4 ',displayLength:2000}); 
+
+  })
+  // specific_copier(x,keyword[x])
 }
+// function specific_copier(x,target){
+  
+//     copier[x].addEventListener('click', function(){
+//     key_storage.value = ''
+//     for(y=0;y<target.length;y++){
+//       key_storage.value += target[y].innerHTML+','
+//   } 
+//     var copyText = key_storage
+//     copyText.select(); 
+//     document.execCommand("copy"); 
+//     M.toast({html: `<span >   Keywords copied   </span>`, classes: 'rounded green accent-4 ',displayLength:2000});
+ 
+//   }) 
+// }
 
 
 
