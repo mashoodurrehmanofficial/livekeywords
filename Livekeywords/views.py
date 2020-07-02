@@ -89,4 +89,5 @@ def youtube_video_tags(request):
       'data': 1
     }
     return render(request, 'youtube_video_tags.html', context)
-  return render(request, 'youtube_video_tags.html')
+  context = {"data":1}
+  return render(request, 'youtube_video_tags.html',context)
