@@ -86,7 +86,7 @@ def youtube_video_tags(request):
       'views':views,
       'thumbnail':thumbnail,
       'keywords':keywords,
-      'data': visitor_ip_address()
+      'data': 1
     }
     return render(request, 'youtube_video_tags.html', context)
   return render(request, 'youtube_video_tags.html')
