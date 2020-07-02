@@ -89,5 +89,13 @@ def youtube_video_tags(request):
       'data': 1
     }
     return render(request, 'youtube_video_tags.html', context)
-  context = {"data":1}
+    def visitor_ip_address(request):
+      x_forwarded_for = request.META.get('HTTP_X_FORWARDED_FOR')
+      if x_forwarded_for:
+          ip = x_forwarded_for.split(',')[0]
+      else:
+          ip = request.META.get('REMOTE_ADDR')
+      return ip
+  # ip = visitor_ip_address()
+  context = {"data": visitor_ip_address(request=request)}
   return render(request, 'youtube_video_tags.html',context)
