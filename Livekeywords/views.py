@@ -55,6 +55,13 @@ def keyword_fetcher(request):
 
 
 def youtube_video_tags(request):
+  def visitor_ip_address(request):
+    x_forwarded_for = request.META.get('HTTP_X_FORWARDED_FOR')
+    if x_forwarded_for:
+        ip = x_forwarded_for.split(',')[0]
+    else:
+        ip = request.META.get('REMOTE_ADDR')
+    return ip
   if request.method == 'POST':
     link = request.POST['link']
     print(link)
@@ -78,7 +85,8 @@ def youtube_video_tags(request):
       'title':title,
       'views':views,
       'thumbnail':thumbnail,
-      'keywords':keywords
+      'keywords':keywords,
+      'data': visitor_ip_address()
     }
     return render(request, 'youtube_video_tags.html', context)
   return render(request, 'youtube_video_tags.html')
